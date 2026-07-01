@@ -1,0 +1,524 @@
+{
+  "pregnancy_weeks": {
+    "1": {
+      "week": 1,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a poppy seed.",
+      "baby_development": "Fertilization has not yet occurred; this week is typically counted from the start of the last menstrual period.",
+      "maternal_changes": "Pregnancy has not yet been confirmed at this stage; this week marks the start of the standard dating system.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "2": {
+      "week": 2,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a poppy seed.",
+      "baby_development": "Ovulation typically occurs around this time; if fertilization happens, a single-cell zygote begins forming.",
+      "maternal_changes": "Ovulation occurs; some may notice typical ovulation signs like changes in cervical mucus.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "3": {
+      "week": 3,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a sesame seed.",
+      "baby_development": "The fertilized egg travels to the uterus and begins dividing rapidly, forming a blastocyst.",
+      "maternal_changes": "Implantation may be occurring; some experience light spotting, though most notice no symptoms yet.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "4": {
+      "week": 4,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a poppy seed.",
+      "baby_development": "The blastocyst implants in the uterine lining; cells begin differentiating into the embryo and placenta.",
+      "maternal_changes": "A missed period may prompt a pregnancy test; early symptoms like fatigue or breast tenderness may begin.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "5": {
+      "week": 5,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of an apple seed.",
+      "baby_development": "The neural tube, which becomes the brain and spinal cord, begins to form. The heart begins to take shape.",
+      "maternal_changes": "Hormone levels rise quickly; nausea, fatigue, and frequent urination may begin for some.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "6": {
+      "week": 6,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a sweet pea.",
+      "baby_development": "The heart begins to beat, and basic facial features including eye and ear formations start to appear.",
+      "maternal_changes": "Morning sickness and fatigue often intensify; heightened sense of smell is common.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "7": {
+      "week": 7,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a blueberry.",
+      "baby_development": "Arm and leg buds appear, and the brain is developing rapidly. The embryo is now called a fetus by some definitions later on, though commonly still called an embryo at this stage.",
+      "maternal_changes": "Breasts may feel fuller and more tender; mood swings can occur due to hormonal shifts.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "8": {
+      "week": 8,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a raspberry.",
+      "baby_development": "Fingers and toes begin to form, and major organs continue developing. The embryo starts to show small movements.",
+      "maternal_changes": "Bloating and mild cramping can occur as the uterus expands; nausea often continues.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "9": {
+      "week": 9,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a grape.",
+      "baby_development": "The embryonic tail has disappeared, and the basic body structure is in place; external genitalia begin to develop.",
+      "maternal_changes": "Energy levels may remain low; some notice visible changes in waistline as the uterus grows.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "10": {
+      "week": 10,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a kumquat.",
+      "baby_development": "The fetus is now formed in basic structure; bones and cartilage begin developing, and the kidneys start functioning.",
+      "maternal_changes": "Nausea may begin to ease for some; increased vaginal discharge is common and normal in moderation.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "11": {
+      "week": 11,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a fig.",
+      "baby_development": "Tiny tooth buds form under the gums, and the fetus begins to develop fingernails.",
+      "maternal_changes": "The uterus is now about the size of a grapefruit; some notice the first hints of a baby bump.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "12": {
+      "week": 12,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a lime.",
+      "baby_development": "Reflexes are developing; the fetus may begin to make small movements, though not yet felt by the parent.",
+      "maternal_changes": "Many notice morning sickness starting to improve around this time as the first trimester ends.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "13": {
+      "week": 13,
+      "trimester": 1,
+      "baby_size_comparison": "About the size of a peach.",
+      "baby_development": "Vocal cords begin to form, and the fetus's body is starting to grow faster relative to the head.",
+      "maternal_changes": "Entering the second trimester; energy levels often improve, and nausea typically lessens.",
+      "recommendations": [
+        "Start or continue taking a prenatal vitamin with folic acid",
+        "Avoid alcohol, smoking, and limit caffeine intake",
+        "Schedule your first prenatal appointment if you haven't already",
+        "Stay hydrated and rest when fatigued"
+      ]
+    },
+    "14": {
+      "week": 14,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a lemon.",
+      "baby_development": "The fetus can make facial expressions; lanugo (fine hair) may begin to cover the body.",
+      "maternal_changes": "A more visible bump may appear; increased appetite is common as nausea fades for many.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "15": {
+      "week": 15,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of an apple.",
+      "baby_development": "Bones are hardening, and the fetus can sense light, though eyelids remain fused shut.",
+      "maternal_changes": "Round ligament pain (mild aches near the lower belly) may occur as the uterus stretches.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "16": {
+      "week": 16,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of an avocado.",
+      "baby_development": "The fetus's circulatory and urinary systems are fully functioning; ears are moving into their final position.",
+      "maternal_changes": "Some begin to feel early fetal movements, often described as a fluttering sensation ('quickening').",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "17": {
+      "week": 17,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a turnip.",
+      "baby_development": "The fetus begins to develop fat stores under the skin, and the skeleton is hardening from cartilage to bone.",
+      "maternal_changes": "Weight gain becomes more noticeable; skin changes such as a darkening line (linea nigra) may appear.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "18": {
+      "week": 18,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a bell pepper.",
+      "baby_development": "The fetus can yawn and hiccup; ears are now in their final position, allowing it to start hearing sounds.",
+      "maternal_changes": "Movements may become more noticeable; mild back pain can occur as posture shifts.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "19": {
+      "week": 19,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a tomato.",
+      "baby_development": "A protective coating called vernix caseosa starts covering the skin, and sensory development continues.",
+      "maternal_changes": "The uterus is now near the belly button; stretch marks may start appearing for some.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "20": {
+      "week": 20,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a banana.",
+      "baby_development": "The halfway point of a typical pregnancy; the fetus is swallowing more, aiding digestive system development.",
+      "maternal_changes": "Anatomy ultrasound is commonly scheduled around now; the baby bump is typically well visible.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "21": {
+      "week": 21,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a carrot.",
+      "baby_development": "Movements often become more noticeable; the fetus's digestive system continues to mature.",
+      "maternal_changes": "Appetite often increases; leg cramps and mild swelling can occur.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "22": {
+      "week": 22,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a spaghetti squash.",
+      "baby_development": "The fetus's senses continue developing; eyebrows and eyelids are fully formed.",
+      "maternal_changes": "Skin changes like stretch marks may increase; Braxton Hicks (practice) contractions can begin.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "23": {
+      "week": 23,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a large mango.",
+      "baby_development": "Blood vessels in the lungs are developing to prepare for breathing after birth.",
+      "maternal_changes": "Swelling in the feet and ankles may increase, especially after standing for long periods.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "24": {
+      "week": 24,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of an ear of corn.",
+      "baby_development": "The fetus's face is fully formed, and the inner ear is developed enough to support balance.",
+      "maternal_changes": "A glucose screening test for gestational diabetes is commonly scheduled around this time.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "25": {
+      "week": 25,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a cauliflower head.",
+      "baby_development": "The fetus is gaining weight steadily, and the spine is becoming visible through developing skin.",
+      "maternal_changes": "Backaches may increase as the growing belly shifts the center of gravity.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "26": {
+      "week": 26,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a scallion bunch.",
+      "baby_development": "Eyes begin to open, and the fetus may respond to light and sound from outside the womb.",
+      "maternal_changes": "Some experience mild shortness of breath as the uterus pushes up against the diaphragm.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "27": {
+      "week": 27,
+      "trimester": 2,
+      "baby_size_comparison": "About the size of a head of lettuce.",
+      "baby_development": "Sleep patterns begin to develop, and the brain continues rapid growth.",
+      "maternal_changes": "Entering the late second trimester; fatigue may return as the body works harder.",
+      "recommendations": [
+        "Continue regular prenatal appointments and recommended screenings",
+        "Stay active with pregnancy-safe exercise as approved by your provider",
+        "Eat a balanced diet rich in iron, calcium, and protein",
+        "Practice good posture to help ease back discomfort"
+      ]
+    },
+    "28": {
+      "week": 28,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a large eggplant.",
+      "baby_development": "The fetus may begin blinking, and rapid eye movement starts, suggesting dream activity may begin.",
+      "maternal_changes": "Entering the third trimester; more frequent prenatal visits often begin around now.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "29": {
+      "week": 29,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a butternut squash.",
+      "baby_development": "Muscles and lungs continue maturing, and the fetus is gaining weight more quickly now.",
+      "maternal_changes": "Heartburn and constipation can become more common due to hormonal and physical changes.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "30": {
+      "week": 30,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a large cabbage.",
+      "baby_development": "The fetus's brain is developing rapidly, with grooves and folds becoming more pronounced.",
+      "maternal_changes": "Sleep may become more difficult due to size and frequent urination at night.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "31": {
+      "week": 31,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a coconut.",
+      "baby_development": "The fetus can turn its head and respond to stimuli; most major organ development is complete.",
+      "maternal_changes": "Braxton Hicks contractions may become more frequent and noticeable.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "32": {
+      "week": 32,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a jicama.",
+      "baby_development": "Bones are fully formed but still soft and pliable; the fetus practices breathing movements.",
+      "maternal_changes": "Shortness of breath and swelling may increase as the baby takes up more room.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "33": {
+      "week": 33,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a pineapple.",
+      "baby_development": "The fetus's immune system is developing through antibodies received from the parent.",
+      "maternal_changes": "Pelvic pressure may increase as the baby drops lower in preparation for birth.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "34": {
+      "week": 34,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a cantaloupe.",
+      "baby_development": "Lungs and central nervous system continue to mature in preparation for life outside the womb.",
+      "maternal_changes": "Frequent urination often increases again as the baby's head may begin engaging in the pelvis.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "35": {
+      "week": 35,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a honeydew melon.",
+      "baby_development": "Most physical development is complete; the fetus continues to gain weight steadily.",
+      "maternal_changes": "Many begin weekly prenatal visits around this time to monitor progress closely.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "36": {
+      "week": 36,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a head of romaine lettuce.",
+      "baby_development": "The fetus is considered early term soon; it continues to gain fat for temperature regulation after birth.",
+      "maternal_changes": "The body may begin preparing for labor with increased Braxton Hicks contractions.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "37": {
+      "week": 37,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a bunch of Swiss chard.",
+      "baby_development": "The fetus is considered early term; organ systems are mature enough to function independently in most cases.",
+      "maternal_changes": "Considered early term; signs of approaching labor like the 'bloody show' or mucus plug loss may appear.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "38": {
+      "week": 38,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a leek bunch.",
+      "baby_development": "The fetus continues final preparations, including lung maturation and additional weight gain.",
+      "maternal_changes": "Increased pelvic pressure and more frequent contractions can occur as the body prepares for labor.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "39": {
+      "week": 39,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a mini watermelon.",
+      "baby_development": "The fetus is considered full term; final touches on brain and lung development continue.",
+      "maternal_changes": "Many feel a mix of anticipation and discomfort; nesting instinct and restlessness are common.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    },
+    "40": {
+      "week": 40,
+      "trimester": 3,
+      "baby_size_comparison": "About the size of a small pumpkin.",
+      "baby_development": "The estimated due date; the fetus is fully developed and ready for birth, though timing varies naturally.",
+      "maternal_changes": "The estimated due date arrives; labor may begin any time before or after this date.",
+      "recommendations": [
+        "Discuss your birth plan and pain management preferences with your provider",
+        "Pack a hospital bag and review the signs of labor",
+        "Monitor fetal movement patterns and report significant changes to your provider",
+        "Rest when possible and stay hydrated"
+      ]
+    }
+  }
+}
