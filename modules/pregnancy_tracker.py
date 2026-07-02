@@ -1,5 +1,4 @@
 # pregnancy_tracker.py
-
 from datetime import datetime, date
 import json
 import os
@@ -7,7 +6,6 @@ import os
 
 import json
 from pathlib import Path
-
 
 def load_pregnancy_data():
 
@@ -23,9 +21,6 @@ def calculate_pregnancy_week(lmp_date):
     days_pregnant = (today - lmp_date).days
 
     weeks = days_pregnant // 7
-
-    # Pregnancy normally 40 weeks hoti hai,
-    # lekin tracker 42 weeks tak support karega
     if weeks < 1:
         weeks = 1
 
