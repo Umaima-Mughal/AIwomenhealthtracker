@@ -53,7 +53,7 @@ Contagious:
                 Document(page_content=text)
             )
 
-    period_path = "data/period-Copy.csv"
+    period_path = "data/period - Copy.csv"
 
     if os.path.exists(period_path):
 
@@ -136,10 +136,6 @@ def load_vector_database():
 client = InferenceClient(
     api_key=HF_TOKEN
 )
-
-# =====================================
-# Generate Response
-# =====================================
 # =====================================
 # Generate Response
 # =====================================
@@ -150,20 +146,24 @@ def generate_response(question):
 
     db = load_vector_database()
 
-
-    # Retrieve relevant medical information
-    docs = db.similarity_search(
+    docs = db.similarity_search_with_score(
         question,
-        k=3
+        k=5
     )
 
+    print("\n========== RETRIEVAL RESULTS ==========")
+
+    for i, (doc, score) in enumerate(docs, 1):
+        print(f"\n--- RESULT {i} | SCORE: {score:.4f} ---")
+        print(doc.page_content[:1000])
+
+    print("========================================")
 
     context = "\n\n".join(
-        [
-            doc.page_content
-            for doc in docs
-        ]
+        doc.page_content
+        for doc, score in docs
     )
+
     if not context.strip():
         return "I can only help with women's health related questions. Please ask a women's health question."
 
@@ -217,7 +217,7 @@ def generate_response(question):
             }
         ],
 
-        max_tokens=120,
+        max_tokens=180,
 
         temperature=0.1
     )
