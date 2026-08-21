@@ -5,7 +5,11 @@ from backend.app.api.health import router as health_router
 from backend.app.core.config import settings
 from backend.app.core.database import Base, engine
 from backend.app.api.tracking import router as tracking_router
+from backend.app.api import pcos
 from backend.app.api import chat
+from backend.app.api import pregnancy
+from backend.app.api import symptoms
+from backend.app.api import cycle
 from backend.app.db_models import (
     User,
     Tracking,
@@ -23,6 +27,10 @@ app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(tracking_router)
 app.include_router(chat.router)
+app.include_router(pcos.router)
+app.include_router(pregnancy.router)
+app.include_router(symptoms.router)
+app.include_router(cycle.router)
 
 @app.on_event("startup")
 def create_tables():
