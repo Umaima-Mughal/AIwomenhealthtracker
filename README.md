@@ -66,7 +66,7 @@ React (Vite) Frontend  ──────────────►  FastAPI Ba
 - **Frontend** — React + Vite SPA. Talks to the backend only through a single configurable `VITE_API_BASE_URL`; no secrets or Supabase keys live in the browser.
 - **Backend** — FastAPI, the single source of truth for business logic, auth, and data access.
 - **Auth** — Supabase Auth issues an access token on login; the frontend stores it and sends it as `Authorization: Bearer <token>` on every protected request.
-- **Data** — Supabase-hosted PostgreSQL, accessed via SQLAlchemy models (`Tracking`, `ChatMessage`, `Insight`, `Notification`, `User`).
+- **Data** — Supabase-hosted PostgreSQL, accessed through SQLAlchemy models for user accounts, tracking records, chat messages, and planned insights/notifications functionality.
 - **AI/ML** — Each health workflow is its own module under `modules/`, called directly by the relevant FastAPI route.
 
 ---
@@ -79,7 +79,7 @@ React (Vite) Frontend  ──────────────►  FastAPI Ba
 - **Dashboard** summarizing recent tracking entries, cycle day, mood, and sleep, with quick actions to every tool.
 - **Tracking** — log date, symptoms, mood, sleep hours, weight, cycle day, period status, and notes; view full history.
 - **AI Chat** — a persistent conversation with the health chatbot, backed by real chat history stored per user.
-- **3-Month History** — tracking records, chat messages, insights, and notifications from the last 90 days, with graceful empty states (no fabricated data).
+- **3-Month History** — tracking records and chat messages from the last 90 days, with graceful empty states (no fabricated data).
 - **Doctor Summary** — an auto-generated, shareable summary of detected patterns across your tracked data, meant to support (not replace) a conversation with a healthcare professional.
 - **PCOS Checker**, **Symptom Checker**, **Cycle Tracker**, and **Pregnancy Tracker** — each backed by its dedicated AI/ML module below.
 
@@ -286,7 +286,7 @@ All endpoints except `/`, `/db-test`, `/health`, `/auth/signup`, and `/auth/logi
 | `POST` | `/pregnancy/` | Get pregnancy tracking results from an LMP date |
 | `POST` | `/symptoms/` | Match free-text symptoms against the knowledge base |
 | `POST` | `/cycle/` | Get menstrual cycle tracking results |
-| `GET` | `/history/3-months` | Tracking, chat, insights, and notifications from the last 90 days |
+| `GET` | `/history/3-months` | Tracking records and chat history from the last 90 days |
 | `GET` | `/doctor/summary` | Auto-generated pattern summary of the last 3 months |
 | `GET` | `/health` | Service health check |
 | `GET` | `/db-test` | Verifies the database connection |
@@ -332,7 +332,8 @@ Gradio will print a local URL to open in your browser.
 
 - [x] Migrate the Gradio MVP to a React frontend + FastAPI backend.
 - [x] Authenticated user profiles and persistent, user-specific health history (Supabase).
-- [x] 3-month history and doctor-summary pattern detection across tracking, chat, insights, and notifications.
+- [x] 3-month history and doctor-summary pattern detection across tracking and chat data.
+- [ ] Add dedicated insights and notification functionality.
 - [ ] Connect relevant historical records more deeply across independent health workflows.
 - [ ] Improve natural-language symptom normalization and medical terminology mapping.
 - [ ] Improve RAG retrieval quality, source filtering, and retrieval evaluation.
