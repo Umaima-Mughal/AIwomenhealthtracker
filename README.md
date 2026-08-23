@@ -30,26 +30,18 @@ The project combines **Retrieval-Augmented Generation (RAG), a trained Machine L
 
 ## 📸 Screenshots
 
-| Login | 
+| Login | Dashboard |
 |---|---|
-| <img width="1187" height="795" alt="image" src="https://github.com/user-attachments/assets/efa5f508-b127-47d9-9bdc-46a86a47a6f3" />
- | Dashboard | 
- |---|---|
- | <img width="1848" height="864" alt="image" src="https://github.com/user-attachments/assets/661c0e1f-e188-462c-8228-4fe436264cfa" /> |
+| <img width="1187" height="795" alt="Login" src="https://github.com/user-attachments/assets/efa5f508-b127-47d9-9bdc-46a86a47a6f3" /> | <img width="1848" height="864" alt="Dashboard" src="https://github.com/user-attachments/assets/661c0e1f-e188-462c-8228-4fe436264cfa" /> |
 
-| Tracking |
+| Tracking | AI Chat |
 |---|---|
-| <img width="1827" height="855" alt="image" src="https://github.com/user-attachments/assets/dc75e17e-e905-46cf-acb9-ec737acc862e" />
- | AI Chat |
- |---|---|
- |<img width="1879" height="867" alt="image" src="https://github.com/user-attachments/assets/3910d4db-e253-4ed9-af3b-9b04ad2426d8" /> |
+| <img width="1827" height="855" alt="Tracking" src="https://github.com/user-attachments/assets/dc75e17e-e905-46cf-acb9-ec737acc862e" /> | <img width="1879" height="867" alt="AI Chat" src="https://github.com/user-attachments/assets/3910d4db-e253-4ed9-af3b-9b04ad2426d8" /> |
 
-| PCOS Checker |
+| PCOS Checker | Doctor Summary |
 |---|---|
-| <img width="1836" height="849" alt="image" src="https://github.com/user-attachments/assets/4252daa8-772d-448e-9744-73039e4fef68" />
-| Doctor Summary |
-|---|---|
- | <img width="1834" height="846" alt="image" src="https://github.com/user-attachments/assets/82edd72f-ae9f-4aa4-af8f-8fb3014e271d" /> |
+| <img width="1836" height="849" alt="PCOS Checker" src="https://github.com/user-attachments/assets/4252daa8-772d-448e-9744-73039e4fef68" /> | <img width="1834" height="846" alt="Doctor Summary" src="https://github.com/user-attachments/assets/82edd72f-ae9f-4aa4-af8f-8fb3014e271d" /> |
+
 ---
 
 ## 🏗️ Architecture
