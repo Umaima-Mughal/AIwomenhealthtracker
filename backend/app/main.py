@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware  ##
 from sqlalchemy import text
 from backend.app.api.auth import router as auth_router
 from backend.app.api.health import router as health_router
@@ -23,6 +24,16 @@ from backend.app.db_models import (
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
+)
+# Allow the React/Vite frontend to call this API from the browser.
+# Origins are configurable via CORS_ORIGINS in the environment so production
+# deployments are not left wide open (see core/config.py).
+app.add_middleware(    ##
+    CORSMiddleware,
+    allow_origins=settings.cors_origins_list,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(health_router)
