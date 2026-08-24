@@ -14,11 +14,14 @@ def load_pregnancy_data():
     with open(json_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
-def calculate_pregnancy_week(lmp_date):
+def calculate_pregnancy_week(lmp_date):   #cv
 
     today = date.today()
 
     days_pregnant = (today - lmp_date).days
+
+    if days_pregnant < 0:
+        raise ValueError("LMP date cannot be in the future.")
 
     weeks = days_pregnant // 7
     if weeks < 1:
@@ -28,8 +31,6 @@ def calculate_pregnancy_week(lmp_date):
         weeks = 42
 
     return weeks, days_pregnant
-
-
 
 def calculate_due_date(lmp_date):
 

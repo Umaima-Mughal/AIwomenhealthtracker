@@ -40,7 +40,7 @@ def bmi_category(bmi):
 def generate_explanation(prediction, answers):
 
         reasons = []
-        if answers["Cycle(R/I)"] == 1:
+        if answers["Cycle(R/I)"] in (1, 4):   #cv
             reasons.append("Irregular menstrual cycle")
 
         if answers["Weight gain(Y/N)"] == 1:
@@ -166,15 +166,17 @@ def prepare_input(
         weight / ((height / 100) ** 2),
         2
     )
+    cycle_for_model = 4 if cycle == 1 else 2 if cycle == 0 else cycle  # cv
+
     answers = {" Age (yrs)": age,
 
-            "Weight (Kg)": weight,
+               "Weight (Kg)": weight,
 
-            "Height(Cm) ": height,
+               "Height(Cm) ": height,
 
-            "BMI": bmi,
+               "BMI": bmi,
 
-            "Cycle(R/I)": cycle,
+               "Cycle(R/I)": cycle_for_model,
 
             "Cycle length(days)": cycle_length,
 

@@ -23,13 +23,14 @@ def get_doctor_summary(
     """
     Generate a 3-month health summary for the authenticated user.
 
-    The summary combines the user's existing:
+    The summary currently analyzes the user's existing:
     - Tracking records
     - Chat messages
-    - Insights
-    - Notifications
 
-    No additional database table is required.
+    Insights and notifications are retrieved by the history service but are
+    not currently used for pattern detection. No additional database table is
+    required.
+
     """
 
     history = get_three_month_history(

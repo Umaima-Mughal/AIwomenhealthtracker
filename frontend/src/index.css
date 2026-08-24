@@ -108,7 +108,10 @@ button {
 }
 
 .sidebar-icon {
-  font-size: 1rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+  stroke-width: 2;
 }
 
 .sidebar-footer {
@@ -286,6 +289,13 @@ button {
 .quick-action:hover {
   border-color: var(--color-primary);
   background: #fdf5f9;
+}
+
+.quick-action-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+  stroke-width: 2;
 }
 
 /* ---------------- Feedback ---------------- */

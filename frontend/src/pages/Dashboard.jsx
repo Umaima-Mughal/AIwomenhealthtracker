@@ -1,17 +1,25 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import {
+  Activity,
+  CalendarDays,
+  HeartPulse,
+  MessageCircle,
+  Microscope,
+  Stethoscope,
+} from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useApi } from "../hooks/useApi";
 import { getTrackingHistory } from "../services/api";
 import { Card, Spinner, EmptyState, ErrorBanner } from "../components/Feedback";
 
 const QUICK_ACTIONS = [
-  { to: "/tracking", label: "Log tracking entry", icon: "📈" },
-  { to: "/chat", label: "Ask the AI chat", icon: "💬" },
-  { to: "/pcos-checker", label: "Run PCOS checker", icon: "🔬" },
-  { to: "/symptom-checker", label: "Check symptoms", icon: "🩹" },
-  { to: "/doctor-summary", label: "View doctor summary", icon: "🩺" },
-  { to: "/history", label: "View 3-month history", icon: "🗓️" },
+  { to: "/tracking", label: "Log tracking entry", icon: Activity },
+  { to: "/chat", label: "Ask the AI chat", icon: MessageCircle },
+  { to: "/pcos-checker", label: "Run PCOS checker", icon: Microscope },
+  { to: "/symptom-checker", label: "Check symptoms", icon: HeartPulse },
+  { to: "/doctor-summary", label: "View doctor summary", icon: Stethoscope },
+  { to: "/history", label: "View 3-month history", icon: CalendarDays },
 ];
 
 export default function Dashboard() {
@@ -98,12 +106,16 @@ export default function Dashboard() {
 
         <Card title="Quick Actions">
           <div className="quick-actions">
-            {QUICK_ACTIONS.map((action) => (
-              <Link key={action.to} to={action.to} className="quick-action">
-                <span>{action.icon}</span>
-                {action.label}
-              </Link>
-            ))}
+              {QUICK_ACTIONS.map((action) => {
+              const Icon = action.icon;
+
+              return (
+                <Link key={action.to} to={action.to} className="quick-action">
+                  <Icon className="quick-action-icon" aria-hidden="true" />
+                  {action.label}
+                </Link>
+              );
+            })}
           </div>
         </Card>
       </section>

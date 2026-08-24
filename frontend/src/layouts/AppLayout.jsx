@@ -1,17 +1,28 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";  // cv
 import { useState } from "react";
+import {
+  Activity,
+  Baby,
+  CalendarDays,
+  HeartPulse,
+  LayoutDashboard,
+  MessageCircle,
+  Microscope,
+  Moon,
+  Stethoscope,
+} from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
-const NAV_ITEMS = [
-  { to: "/", label: "Dashboard", icon: "🏠", end: true },
-  { to: "/tracking", label: "Tracking", icon: "📈" },
-  { to: "/chat", label: "AI Chat", icon: "💬" },
-  { to: "/history", label: "3-Month History", icon: "🗓️" },
-  { to: "/doctor-summary", label: "Doctor Summary", icon: "🩺" },
-  { to: "/pcos-checker", label: "PCOS Checker", icon: "🔬" },
-  { to: "/symptom-checker", label: "Symptom Checker", icon: "🩹" },
-  { to: "/cycle-tracker", label: "Cycle Tracker", icon: "🌙" },
-  { to: "/pregnancy-tracker", label: "Pregnancy Tracker", icon: "🤰" },
+const NAV_ITEMS = [    // cv
+  { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
+  { to: "/tracking", label: "Tracking", icon: Activity },
+  { to: "/chat", label: "AI Chat", icon: MessageCircle },
+  { to: "/history", label: "3-Month History", icon: CalendarDays },
+  { to: "/doctor-summary", label: "Doctor Summary", icon: Stethoscope },
+  { to: "/pcos-checker", label: "PCOS Checker", icon: Microscope },
+  { to: "/symptom-checker", label: "Symptom Checker", icon: HeartPulse },
+  { to: "/cycle-tracker", label: "Cycle Tracker", icon: Moon },
+  { to: "/pregnancy-tracker", label: "Pregnancy Tracker", icon: Baby },
 ];
 
 export default function AppLayout() {
@@ -41,18 +52,22 @@ export default function AppLayout() {
         </div>
 
         <nav className="sidebar-nav">
-          {NAV_ITEMS.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.end}
-              className={({ isActive }) => `sidebar-link ${isActive ? "active" : ""}`}
-              onClick={() => setNavOpen(false)}
-            >
-              <span className="sidebar-icon">{item.icon}</span>
-              {item.label}
-            </NavLink>
-          ))}
+            {NAV_ITEMS.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.end}
+                className={({ isActive }) => `sidebar-link ${isActive ? "active" : ""}`}
+                onClick={() => setNavOpen(false)}
+              >
+                <Icon className="sidebar-icon" aria-hidden="true" />
+                {item.label}
+              </NavLink>
+            );
+          })}
         </nav>
 
         <div className="sidebar-footer">

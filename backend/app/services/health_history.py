@@ -165,32 +165,6 @@ def analyze_cycle_patterns(tracking_records, patterns):
         )
 
     # --------------------------------------------------------
-    # Detect very short cycle days
-    # --------------------------------------------------------
-
-    low_cycle_records = [
-        record
-        for record in records
-        if record.cycle_day < 21
-    ]
-
-    if len(low_cycle_records) >= 2:
-
-        add_pattern(
-            patterns=patterns,
-            pattern_type="short_cycle",
-            severity="moderate",
-            title="Repeated short cycle pattern",
-            message=(
-                "Your records contain repeated cycle observations "
-                "below the typical 21-day range."
-            ),
-            evidence=[
-                f"{len(low_cycle_records)} records with cycle day below 21"
-            ],
-        )
-
-    # --------------------------------------------------------
     # Detect unusually long cycle progression
     # --------------------------------------------------------
 
@@ -242,10 +216,17 @@ def analyze_period_patterns(tracking_records, patterns):
     # Count recorded period dates
     period_dates = []
 
-    for record in period_records:
+    for record in period_records: # cv
 
         try:
-            date_value = str(record.period_started).strip()
+            date_value = str(record.period_started).strip().lower()
+
+            if date_value == "yes":
+                period_dates.append(record.date)
+                continue
+
+            if date_value == "no":
+                continue
 
             parsed_date = datetime.strptime(
                 date_value,

@@ -105,8 +105,8 @@ export default function PCOSChecker() {
                 <span>Cycle (R/I)</span>
                 <select required value={form.cycle} onChange={(e) => updateField("cycle", e.target.value)}>
                   <option value="">Select</option>
-                  <option value="0">Regular</option>
-                  <option value="1">Irregular</option>
+                  <option value="2">Regular</option>    {/* cv */}
+                  <option value="4">Irregular</option>
                 </select>
               </label>
             </div>
@@ -151,7 +151,7 @@ export default function PCOSChecker() {
               </div>
               <div className="result-row">
                 <span>Confidence</span>
-                <strong>{typeof result.confidence === "number" ? `${(result.confidence * 100).toFixed(1)}%` : result.confidence}</strong>
+                <strong>{typeof result.confidence === "number" ? `${result.confidence.toFixed(1)}%` : result.confidence}</strong> {/* cv */}
               </div>
               <p className="disclaimer">
                 This is an informational ML screening result, not a medical diagnosis. Please consult a
