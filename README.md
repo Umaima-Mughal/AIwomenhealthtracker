@@ -34,18 +34,15 @@ The project combines **Retrieval-Augmented Generation (RAG), a trained Machine L
 |---|---|
 | <img width="1513" height="834" alt="image" src="https://github.com/user-attachments/assets/572fe550-ded3-483a-b9d4-64d7885166a0" />
 | <img width="1858" height="880" alt="image" src="https://github.com/user-attachments/assets/569a16ac-039f-4d72-b2e6-69c7701150f4" />
- |
+|
 
 | Tracking | AI Chat |
 |---|---|
-|<img width="1821" height="868" alt="image" src="https://github.com/user-attachments/assets/668d471f-6667-423a-8e1f-cefc89f37313" />
- | <img width="1879" height="867" alt="AI Chat" src="https://github.com/user-attachments/assets/3910d4db-e253-4ed9-af3b-9b04ad2426d8" /> |
+|<img width="1821" height="868" alt="image" src="https://github.com/user-attachments/assets/668d471f-6667-423a-8e1f-cefc89f37313" /> | <img width="1879" height="867" alt="AI Chat" src="https://github.com/user-attachments/assets/3910d4db-e253-4ed9-af3b-9b04ad2426d8" /> |
 
 | PCOS Checker | Doctor Summary |
 |---|---|
-| <img width="1860" height="872" alt="image" src="https://github.com/user-attachments/assets/f39eae2e-fdbc-4101-a4c5-591c46cd9c9b" />
- | <img width="1874" height="859" alt="image" src="https://github.com/user-attachments/assets/0fc22c59-e0d1-473e-9225-c87e66b8abbf" />
- |
+| <img width="1860" height="872" alt="image" src="https://github.com/user-attachments/assets/f39eae2e-fdbc-4101-a4c5-591c46cd9c9b" /> | <img width="1874" height="859" alt="image" src="https://github.com/user-attachments/assets/0fc22c59-e0d1-473e-9225-c87e66b8abbf" /> |
 
 ---
 
