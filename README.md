@@ -1,501 +1,356 @@
-# 🌸 AI-Powered Women's Health Support Platform
+# 🌸 AI Women's Health Tracker
 
-A modular AI and Machine Learning application that combines **Retrieval-Augmented Generation (RAG), Machine Learning, structured health knowledge, and rule-based tracking workflows** within a single interactive Gradio interface.
+A full-stack **AI and Machine Learning platform for women's health** — a React frontend backed by a FastAPI API, Supabase (Auth + PostgreSQL), and a set of specialized AI/ML modules for chat, PCOS screening, symptom exploration, pregnancy tracking, and menstrual cycle tracking.
 
-The platform provides educational support for women's health questions, PCOS-associated pattern assessment, structured symptom exploration, pregnancy journey tracking, and menstrual cycle estimation.
-
-Rather than using a single general-purpose AI model for every task, the application applies **specialized technical approaches to different health-support workflows**.
+The project combines **Retrieval-Augmented Generation (RAG), a trained Machine Learning classifier, structured health knowledge matching, and deterministic date-based tracking** — using a different, purpose-built technique for each workflow instead of one general-purpose model for everything.
 
 > ⚠️ **Medical Disclaimer:** This application is intended for educational and informational purposes only. It does not diagnose medical conditions and should not replace consultation, examination, or treatment by a qualified healthcare professional.
 
 ---
 
+## 📑 Table of Contents
+
+- [Screenshots](#-screenshots)
+- [Architecture](#-architecture)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+  - [Backend Setup](#1-backend-setup)
+  - [Frontend Setup](#2-frontend-setup)
+- [Environment Variables](#-environment-variables)
+- [API Reference](#-api-reference)
+- [Training the PCOS Model](#-training-the-pcos-model)
+- [Original Gradio MVP](#-original-gradio-mvp)
+- [Limitations](#-limitations)
+- [Roadmap](#-roadmap)
+- [Author](#-author)
+
+---
+
+## 📸 Screenshots
+
+| Login | Dashboard |
+|---|---|
+| <img width="1513" height="834" alt="image" src="https://github.com/user-attachments/assets/572fe550-ded3-483a-b9d4-64d7885166a0" />
+| <img width="1858" height="880" alt="image" src="https://github.com/user-attachments/assets/569a16ac-039f-4d72-b2e6-69c7701150f4" />
+ |
+
+| Tracking | AI Chat |
+|---|---|
+|<img width="1821" height="868" alt="image" src="https://github.com/user-attachments/assets/668d471f-6667-423a-8e1f-cefc89f37313" />
+ | <img width="1879" height="867" alt="AI Chat" src="https://github.com/user-attachments/assets/3910d4db-e253-4ed9-af3b-9b04ad2426d8" /> |
+
+| PCOS Checker | Doctor Summary |
+|---|---|
+| <img width="1860" height="872" alt="image" src="https://github.com/user-attachments/assets/f39eae2e-fdbc-4101-a4c5-591c46cd9c9b" />
+ | <img width="1874" height="859" alt="image" src="https://github.com/user-attachments/assets/0fc22c59-e0d1-473e-9225-c87e66b8abbf" />
+ |
+
+---
+
+## 🏗️ Architecture
+
+```text
+Browser
+   │
+   ▼
+React (Vite) Frontend  ──────────────►  FastAPI Backend  ──────────────►  Supabase (Auth + PostgreSQL)
+   │  Bearer token on every                  │                                   │
+   │  protected request                      │                                   │
+   │                                          ▼                                   │
+   │                                 AI / ML Modules                             │
+   │                                 ├─ RAG Medical Chatbot (LangChain + FAISS)  │
+   │                                 ├─ PCOS Risk Checker (Random Forest)        │
+   │                                 ├─ Symptom Checker (structured matching)    │
+   │                                 ├─ Pregnancy Tracker (date-based)           │
+   │                                 └─ Cycle Tracker (date-based)               │
+   └───────────────────────────────────────────────────────────────────────────┘
+```
+
+- **Frontend** — React + Vite SPA. Talks to the backend only through a single configurable `VITE_API_BASE_URL`; no secrets or Supabase keys live in the browser.
+- **Backend** — FastAPI, the single source of truth for business logic, auth, and data access.
+- **Auth** — Supabase Auth issues an access token on login; the frontend stores it and sends it as `Authorization: Bearer <token>` on every protected request.
+- **Data** — Supabase-hosted PostgreSQL, accessed through SQLAlchemy models for user accounts, tracking records, chat messages, and planned insights/notifications functionality.
+- **AI/ML** — Each health workflow is its own module under `modules/`, called directly by the relevant FastAPI route.
+
+---
+
 ## ✨ Features
 
-### 🤖 AI Women's Health Chatbot
+### 🖥️ Full-Stack Web App
+
+- Email/password **signup & login** via Supabase Auth, with the session token stored client-side and attached automatically to protected requests.
+- **Dashboard** summarizing recent tracking entries, cycle day, mood, and sleep, with quick actions to every tool.
+- **Tracking** — log date, symptoms, mood, sleep hours, weight, cycle day, period status, and notes; view full history.
+- **AI Chat** — a persistent conversation with the health chatbot, backed by real chat history stored per user.
+- **3-Month History** — tracking records and chat messages from the last 90 days, with graceful empty states (no fabricated data).
+- **Doctor Summary** — an auto-generated, shareable summary of detected patterns across your tracked data, meant to support (not replace) a conversation with a healthcare professional.
+- **PCOS Checker**, **Symptom Checker**, **Cycle Tracker**, and **Pregnancy Tracker** — each backed by its dedicated AI/ML module below.
+
+### 🤖 AI Women's Health Chatbot (RAG)
 
 A women's health-focused chatbot built using a **Retrieval-Augmented Generation (RAG)** pipeline.
 
-The system retrieves relevant information from local medical datasets before providing the retrieved context to a Hugging Face-hosted language model.
-
-### RAG Workflow
-
 1. Medical information is loaded from CSV datasets.
-2. Dataset rows are converted into LangChain documents.
-3. Documents are divided into smaller text chunks using `RecursiveCharacterTextSplitter`.
-4. Sentence embeddings are generated using a Hugging Face embedding model.
-5. FAISS stores the embedded medical knowledge.
-6. Relevant documents are retrieved using similarity search.
-7. Retrieved context is provided to the language model.
-8. The model generates a concise educational response using the retrieved information.
+2. Dataset rows are converted into LangChain documents and split into chunks with `RecursiveCharacterTextSplitter`.
+3. Sentence embeddings are generated with a Hugging Face embedding model.
+4. FAISS stores and retrieves the embedded medical knowledge via similarity search.
+5. Retrieved context is passed to a Hugging Face-hosted language model (`HuggingFaceH4/zephyr-7b-beta`), which generates a concise, educational response.
 
-The chatbot is instructed to focus on women's health-related questions, avoid definite diagnoses, and provide short educational responses.
+The chatbot is instructed to stay on women's-health topics, avoid definite diagnoses, and keep responses short and educational. Chat history is persisted per authenticated user via the `/chat/` endpoint.
 
-### Chatbot Technologies
+### 🧪 Machine Learning-Based PCOS Risk Checker
 
-* LangChain
-* FAISS
-* Hugging Face Embeddings
-* Sentence Transformers
-* Hugging Face Inference API
-* `HuggingFaceH4/zephyr-7b-beta`
+A trained **Random Forest Classifier** performs a pattern-based assessment from 13 health/lifestyle indicators (age, weight, height, BMI, cycle regularity, cycle length, weight gain, hair growth, skin darkening, hair loss, pimples, fast food intake, exercise). BMI is calculated automatically from height and weight.
 
----
+**Training pipeline** (`train_pcos_model.py`): load the PCOS dataset → select the 13 features → 80/20 train/test split → train a 100-estimator Random Forest → evaluate accuracy, classification report, confusion matrix, and feature importance → save with Joblib to `models/pcos_model.pkl`.
 
-## 🧪 Machine Learning-Based PCOS Risk Checker
+The API returns a prediction label, the raw value, and the model's confidence — **not** a medical probability of having PCOS. Results should always be paired with professional evaluation.
 
-The PCOS Risk Checker uses a trained **Random Forest Classifier** to perform a pattern-based assessment using selected health and lifestyle indicators.
+### 🔎 Structured Symptom Checker
 
-The module is designed as a Machine Learning classification workflow and does not provide a clinical PCOS diagnosis.
+Compares user-entered symptoms against a structured JSON knowledge base of roughly 100 conditions, each with a name, category, description, and common symptoms.
 
-### Model Input Features
+Matching combines exact and similarity-based matching (Python's `SequenceMatcher`), scores each condition, and returns up to four ranked possible matches with matched symptoms and a description — never a diagnosis.
 
-The model uses 13 features:
+### 🤰 Pregnancy Journey Tracker
 
-* Age
-* Weight
-* Height
-* BMI
-* Menstrual cycle regularity
-* Cycle length
-* Recent weight gain
-* Excess facial or body hair growth
-* Skin darkening
-* Hair loss
-* Pimples
-* Fast food consumption
-* Regular exercise
+Estimates pregnancy progress from a **Last Menstrual Period (LMP)** date: current week, days pregnant, trimester, and estimated due date (standard 280-day duration). Week-specific data (baby size, development, maternal changes, recommendations) is pulled from `data/pregnancy_data.json` for weeks 1–42.
 
-BMI is automatically calculated from the user's height and weight.
+### 🩸 Menstrual Cycle Tracker
 
-### Model Training Pipeline
+From LMP date, average cycle length, and period duration, estimates the next period date, current cycle day, and cycle phase (Menstrual, Follicular, Ovulation, Luteal). Cycle length is validated against the typical 21–35 day range.
 
-The PCOS model is trained using a structured PCOS dataset.
-
-The training pipeline:
-
-1. Loads the dataset using Pandas.
-2. Selects the required 13 model features.
-3. Separates the PCOS target variable.
-4. Splits the dataset into 80% training and 20% testing data.
-5. Trains a Random Forest classifier with 100 estimators.
-6. Evaluates model accuracy.
-7. Generates a classification report.
-8. Generates a confusion matrix.
-9. Calculates Random Forest feature importance.
-10. Saves the trained model using Joblib.
-
-The trained model is stored at:
-
-```text
-models/pcos_model.pkl
-```
-
-The application loads the saved model and uses it for pattern assessment.
-
-### PCOS Assessment Output
-
-The PCOS module displays:
-
-* PCOS-associated pattern classification
-* Model prediction confidence
-* Pattern-level interpretation
-* Calculated BMI
-* BMI category
-* PCOS-associated symptoms reported by the user
-* Educational lifestyle and health recommendations
-
-The model evaluates the **overall combination of available input features based on patterns learned during model training**.
-
-### ⚠️ PCOS Assessment Disclaimer
-
-The PCOS Risk Checker **cannot diagnose PCOS with certainty and should not be used as a diagnostic tool**.
-
-The Machine Learning model performs a **pattern-based assessment using the limited health and lifestyle features available in the application and patterns learned from the training dataset**.
-
-The result is based only on selected indicators including menstrual cycle regularity, weight changes, hair growth, skin darkening, hair loss, pimples, BMI, and other model input features.
-
-A detected PCOS-associated pattern does not confirm that a user has PCOS. Similarly, the absence of a strong detected pattern does not rule out PCOS.
-
-The displayed confidence represents the Machine Learning model's prediction confidence based on learned data patterns. It does **not** represent the medical probability that a user has PCOS.
-
-PCOS diagnosis may require professional medical evaluation, clinical history, laboratory testing, hormone assessment, and imaging such as ultrasound.
-
-Users should consult a qualified healthcare professional or gynecologist for proper evaluation and diagnosis.
-
----
-
-## 🔎 Structured Symptom Checker
-
-The Symptom Checker compares user-entered symptoms against a structured JSON health knowledge base containing approximately **100 conditions included within the application's available health data**.
-
-Each condition contains:
-
-* Condition name
-* Medical category
-* Description
-* Common symptoms
-
-### Symptom Matching Workflow
-
-The Symptom Checker performs:
-
-1. Exact symptom matching.
-2. Similarity-based symptom matching using Python's `SequenceMatcher`.
-3. Match scoring based on detected symptoms.
-4. Condition ranking using the calculated match score.
-
-The application returns up to **four possible matching conditions**.
-
-For each possible condition, the system displays:
-
-* Condition name
-* Medical category
-* Matched symptoms
-* Condition description
-
-If the entered symptoms cannot be matched with the available knowledge base, the user is encouraged to consult a qualified healthcare professional or use the AI Health Chatbot for further educational information.
-
-### ⚠️ Symptom Checker Disclaimer
-
-The Symptom Checker does not diagnose medical conditions.
-
-Symptoms frequently overlap across multiple health conditions. Displayed results represent **possible symptom associations based only on the structured health data available to the application**.
-
-Users should consult a qualified healthcare professional or gynecologist for proper examination, diagnosis, and treatment.
-
----
-
-## 🤰 Pregnancy Journey Tracker
-
-The Pregnancy Journey Tracker estimates pregnancy progress using the user's **Last Menstrual Period (LMP)** date.
-
-The tracker calculates:
-
-* Current pregnancy week
-* Number of days pregnant
-* Current trimester
-* Estimated due date
-
-The estimated due date is calculated using a standard **280-day pregnancy duration from the LMP date**.
-
-Pregnancy weeks are mapped to structured information stored in:
-
-```text
-data/pregnancy_data.json
-```
-
-When information for the calculated pregnancy week is available, the tracker displays:
-
-* Baby size comparison
-* Baby development information
-* Maternal changes
-* Week-specific recommendations
-
-The supported pregnancy tracking range is limited to weeks **1–42**.
-
-### ⚠️ Pregnancy Tracker Disclaimer
-
-Pregnancy calculations are estimates based on the entered Last Menstrual Period date.
-
-Actual gestational age and estimated due dates may differ.
-
-The Pregnancy Journey Tracker provides general educational information only and does not replace prenatal care, ultrasound assessment, or consultation with a qualified healthcare professional.
-
----
-
-## 🩸 Menstrual Cycle Tracker
-
-The Menstrual Cycle Tracker provides basic cycle information using:
-
-* Last menstrual period date
-* Average cycle length
-* Period duration
-
-The tracker calculates:
-
-* Expected next period date
-* Current cycle day
-* Estimated menstrual cycle phase
-
-Possible estimated phases include:
-
-* Menstrual Phase
-* Follicular Phase
-* Ovulation Phase
-* Luteal Phase
-
-The application also checks whether the entered cycle length falls within the **21–35 day range used by the tracker**.
-
-### ⚠️ Cycle Tracker Disclaimer
-
-Menstrual cycle phases displayed by the application are simple date-based estimates.
-
-Actual ovulation timing and cycle phases may vary between individuals and between cycles.
-
-The Cycle Tracker should not be used for medical diagnosis, fertility planning, or contraception decisions.
-
----
-
-## 🖥️ Gradio Interface
-
-The current MVP uses **Gradio Blocks** to provide an interactive tab-based interface.
-
-The application contains five primary workflows:
-
-* 🤖 AI Health Chatbot
-* 🧪 PCOS Risk Checker
-* 🔎 Symptom Checker
-* 🤰 Pregnancy Tracker
-* 🩸 Cycle Tracker
-
-Each health feature is implemented as an independent Python module and connected to the central Gradio application.
-
-This modular structure allows individual workflows to use different technical approaches while remaining accessible through a single interface.
+> Every screening/tracking module above returns **estimates and pattern-based signals only**. None of them constitute a diagnosis — see [Limitations](#-limitations).
 
 ---
 
 ## 🛠️ Tech Stack
 
-* Python
-* Gradio
-* Pandas
-* NumPy
-* Scikit-learn
-* Random Forest Classifier
-* Joblib
-* LangChain
-* FAISS
-* Hugging Face Inference API
-* Hugging Face Embeddings
-* Sentence Transformers
-* PyTorch
-* JSON
-* Matplotlib
+**Frontend**
+| | |
+|---|---|
+| React 18 | UI library |
+| Vite | Dev server & build tool |
+| React Router | Client-side routing |
+| Axios | HTTP client with interceptors for auth + error handling |
+
+**Backend**
+| | |
+|---|---|
+| FastAPI | REST API framework |
+| SQLAlchemy | ORM over PostgreSQL |
+| Pydantic | Request/response validation |
+| Supabase (Auth + Postgres) | Authentication & data storage |
+| Uvicorn | ASGI server |
+
+**AI / ML**
+| | |
+|---|---|
+| LangChain + LangChain Community | RAG orchestration |
+| FAISS | Vector similarity search |
+| Sentence Transformers / Hugging Face Embeddings | Text embeddings |
+| Hugging Face Inference API (`zephyr-7b-beta`) | Chat generation |
+| Scikit-learn (Random Forest) | PCOS classification |
+| Pandas / NumPy / Joblib / Matplotlib | Data prep, model persistence, evaluation |
+
+**Original MVP**
+| | |
+|---|---|
+| Gradio | Standalone single-file interface (`gradio_app.py`), still included and runnable |
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-AI-Womens-Health-Tracker/
+AIwomenhealthtracker/
 │
-├── data/
-│   ├── Diseases_Symptoms.csv
-│   ├── period-Copy.csv
-│   ├── PCOS_extended_dataset.csv
-│   ├── pregnancy_data.json
-│   └── women_diseases.json
+├── backend/
+│   └── app/
+│       ├── main.py                # FastAPI app, CORS, router registration
+│       ├── core/                  # config, database session, auth dependency
+│       ├── api/                   # one router per feature (auth, tracking, chat,
+│       │                          #   pcos, pregnancy, symptoms, cycle, history, doctor, health)
+│       ├── db_models/             # SQLAlchemy models (User, Tracking, ChatMessage, Insight, Notification)
+│       ├── services/              # health_history.py — 3-month aggregation & pattern analysis
+│       └── supabase_client.py     # Supabase client used by auth
 │
-├── models/
-│   └── pcos_model.pkl
+├── frontend/
+│   ├── src/
+│   │   ├── components/            # Shared UI: layout pieces, loading/empty/error states
+│   │   ├── pages/                 # Dashboard, Tracking, Chat, History, DoctorSummary,
+│   │   │                          #   PCOSChecker, SymptomChecker, CycleTracker, PregnancyTracker, Login, Signup
+│   │   ├── layouts/AppLayout.jsx  # Sidebar navigation shell for authenticated pages
+│   │   ├── services/api.js        # Centralized Axios client, one function per backend endpoint
+│   │   ├── hooks/useApi.js        # Shared loading/error/data hook
+│   │   ├── context/AuthContext.jsx# Session state (token, user, login/signup/logout)
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── package.json
+│   ├── vite.config.js
+│   └── .env.example
 │
-├── modules/
-│   ├── medical_chatbot.py
-│   ├── symptom_checker.py
-│   ├── cycle_tracker.py
-│   ├── pregnancy_tracker.py
-│   └── pcos_checker.py
+├── modules/                       # AI/ML modules shared by both the FastAPI backend and Gradio MVP
+│   ├── medical_chatbot.py         # RAG chatbot
+│   ├── pcos_checker.py            # PCOS model inference
+│   ├── symptom_checker.py         # Symptom matching
+│   ├── pregnancy_tracker.py       # Pregnancy calculations
+│   └── cycle_tracker.py           # Cycle calculations
 │
-├── gradio-app.py
-├── train_pcos_model.py
+├── data/                          # CSV/JSON datasets used by the AI/ML modules
+├── models/pcos_model.pkl          # Trained Random Forest model
+├── gradio_app.py                  # Original standalone Gradio MVP
+├── train_pcos_model.py            # PCOS model training script
 ├── requirements.txt
-├── .gitignore
 └── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+## 🚀 Getting Started
 
-Clone the repository:
+### Prerequisites
+
+- Python 3.10+
+- Node.js 18+ and npm
+- A [Supabase](https://supabase.com) project (URL + anon key) and a Postgres `DATABASE_URL`
+
+### 1. Backend Setup
 
 ```bash
-git clone <your-repository-url>
-cd <repository-folder>
-```
-
-Create a virtual environment:
-
-```bash
+# from the repository root
 python -m venv .venv
-```
-
-Activate the virtual environment.
-
-### Windows
-
-```bash
-.venv\Scripts\activate
-```
-
-### Linux / macOS
-
-```bash
-source .venv/bin/activate
-```
-
-Install the required dependencies:
-
-```bash
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
+
+Create a `.env` file in the repository root (see [Environment Variables](#-environment-variables) for the full list), then run the API **from the repository root** (it's imported as `backend.app.main`):
+
+```bash
+uvicorn backend.app.main:app --reload
+```
+
+- API: `http://127.0.0.1:8000`
+- Interactive docs (Swagger UI): `http://127.0.0.1:8000/docs`
+
+### 2. Frontend Setup
+
+```bash
+cd frontend
+npm install
+cp .env.example .env   # adjust VITE_API_BASE_URL if your backend runs elsewhere
+npm run dev
+```
+
+- Frontend: `http://localhost:5173`
+
+Open `http://localhost:5173`, sign up, log in, and use the sidebar to reach every page.
 
 ---
 
 ## 🔐 Environment Variables
 
-Create a `.env` file in the project root directory.
-
-Add your Hugging Face token:
+**Backend** — `.env` in the repository root (read by `backend/app/core/config.py`):
 
 ```env
-HF_TOKEN=your_hugging_face_token
+DATABASE_URL=postgresql://<user>:<password>@<host>:<port>/<database>
+SUPABASE_URL=https://<your-project>.supabase.co
+SUPABASE_KEY=<your-supabase-anon-key>
+HF_TOKEN=<your-hugging-face-token>
+
+# Optional — comma-separated list of origins allowed to call the API from a browser.
+# Defaults to the local Vite dev server if omitted.
+CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
 ```
 
-The Hugging Face token is loaded using `python-dotenv` and used by the Hugging Face `InferenceClient`.
+**Frontend** — `frontend/.env`:
 
-> Never commit API tokens or the `.env` file to GitHub.
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
+
+> ⚠️ Only the Supabase **anon/public** key belongs in `SUPABASE_KEY` — never a service-role key. The frontend never stores or receives any Supabase key; it only ever talks to your own FastAPI backend and holds the user's access token in local storage. Never commit a real `.env` file, API keys, or access tokens.
 
 ---
 
-## ▶️ Running the Application
+## 📡 API Reference
 
-Run the Gradio application:
+All endpoints except `/`, `/db-test`, `/health`, `/auth/signup`, and `/auth/login` require `Authorization: Bearer <access_token>`.
 
-```bash
-python gradio-app.py
-```
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/auth/signup` | Create a Supabase account |
+| `POST` | `/auth/login` | Log in, returns access + refresh tokens |
+| `GET` | `/tracking/` | List the current user's tracking entries |
+| `POST` | `/tracking/` | Create a tracking entry |
+| `GET` | `/chat/` | Get chat history |
+| `POST` | `/chat/` | Send a message, get an AI response |
+| `POST` | `/pcos/` | Run the PCOS risk checker |
+| `POST` | `/pregnancy/` | Get pregnancy tracking results from an LMP date |
+| `POST` | `/symptoms/` | Match free-text symptoms against the knowledge base |
+| `POST` | `/cycle/` | Get menstrual cycle tracking results |
+| `GET` | `/history/3-months` | Tracking records and chat history from the last 90 days |
+| `GET` | `/doctor/summary` | Auto-generated pattern summary of the last 3 months |
+| `GET` | `/health` | Service health check |
+| `GET` | `/db-test` | Verifies the database connection |
 
-Gradio will display the application URL in the terminal.
-
-Open the provided URL in a browser to access the application.
+Full request/response schemas are available at `/docs` once the backend is running.
 
 ---
 
 ## 🧠 Training the PCOS Model
 
-The repository includes a separate model training script.
-
-Run:
-
 ```bash
 python train_pcos_model.py
 ```
 
-The training script:
+Loads the PCOS dataset → selects the model's input features → splits into training/testing sets → trains the Random Forest classifier → prints accuracy, classification report, and confusion matrix → saves the model to `models/pcos_model.pkl` → displays a feature-importance chart.
 
-1. Loads the PCOS dataset.
-2. Selects the model input features.
-3. Splits the dataset into training and testing sets.
-4. Trains the Random Forest classifier.
-5. Calculates model accuracy.
-6. Displays the classification report.
-7. Displays the confusion matrix.
-8. Saves the trained model.
-9. Displays a feature importance visualization.
+---
 
-The trained model is saved as:
+## 🖥️ Original Gradio MVP
 
-```text
-models/pcos_model.pkl
+Before the full-stack migration, the project shipped as a single-file **Gradio Blocks** app (`gradio_app.py`) with five tabs — Chatbot, PCOS Checker, Symptom Checker, Pregnancy Tracker, and Cycle Tracker — built on the same `modules/` used by the FastAPI backend today. It's kept in the repo and still runs standalone:
+
+```bash
+python gradio_app.py
 ```
 
----
-
-## 🏗️ Application Architecture
-
-```text
-Gradio Interface
-       │
-       ├── AI Health Chatbot
-       │        │
-       │        ├── CSV Medical Data
-       │        ├── LangChain Documents
-       │        ├── Text Splitting
-       │        ├── Hugging Face Embeddings
-       │        ├── FAISS Vector Database
-       │        └── Hugging Face Language Model
-       │
-       ├── PCOS Risk Checker
-       │        │
-       │        └── Random Forest Model
-       │
-       ├── Symptom Checker
-       │        │
-       │        └── JSON Health Knowledge Base
-       │
-       ├── Pregnancy Tracker
-       │        │
-       │        └── Pregnancy Week JSON Data
-       │
-       └── Menstrual Cycle Tracker
-                │
-                └── Date and Cycle Calculations
-```
+Gradio will print a local URL to open in your browser.
 
 ---
 
-## ⚠️ General Limitations
+## ⚠️ Limitations
 
-* The application cannot diagnose medical conditions.
-* PCOS assessment is limited to selected model features and patterns learned from the training dataset.
-* High Machine Learning model accuracy does not represent clinical diagnostic accuracy.
-* Symptom matching depends on conditions and symptoms available in the JSON knowledge base.
-* Similar symptoms may occur across multiple health conditions.
-* Similarity-based text matching may not understand every natural-language symptom description.
-* Pregnancy calculations depend on the entered LMP date.
-* Menstrual cycle phases are simple date-based estimates.
-* AI-generated responses may contain incomplete or inaccurate information.
-* Laboratory tests, physical examinations, imaging, and clinical evaluation cannot be replaced by this application.
+- The application cannot diagnose medical conditions.
+- PCOS assessment is limited to the selected model features and patterns learned from the training dataset; high model accuracy does not equal clinical diagnostic accuracy.
+- Symptom matching depends on the conditions available in the JSON knowledge base and may not understand every natural-language description.
+- Pregnancy and cycle calculations are simple, date-based estimates — actual gestational age, due dates, and cycle phases vary between individuals.
+- AI-generated chat responses may be incomplete or inaccurate.
+- None of the above replace laboratory tests, physical examination, imaging, or clinical evaluation by a qualified healthcare professional.
 
 ---
 
-## 🚀 Future Roadmap
+## 🗺️ Roadmap
 
-The current Gradio application represents the first working MVP of the platform.
+- [x] Migrate the Gradio MVP to a React frontend + FastAPI backend.
+- [x] Authenticated user profiles and persistent, user-specific health history (Supabase).
+- [x] 3-month history and doctor-summary pattern detection across tracking and chat data.
+- [ ] Add dedicated insights and notification functionality.
+- [ ] Connect relevant historical records more deeply across independent health workflows.
+- [ ] Improve natural-language symptom normalization and medical terminology mapping.
+- [ ] Improve RAG retrieval quality, source filtering, and retrieval evaluation.
+- [ ] Add automated unit and integration tests for backend and frontend.
+- [ ] Improve menstrual cycle phase estimation.
+- [ ] Deploy the platform as a publicly accessible web application.
 
-Planned technical and product improvements include:
-
-* Migrate the Gradio MVP to a React frontend and FastAPI backend.
-* Introduce authenticated user profiles and persistent user-specific health history.
-* Build a longitudinal health timeline for structured cycle and symptom records.
-* Connect relevant historical records across independent health workflows.
-* Add grounded medical report terminology and report-impression explanation.
-* Introduce rule-based pattern-awareness workflows using historical user records.
-* Improve natural-language symptom normalization and medical terminology mapping.
-* Improve RAG retrieval quality, source filtering, and retrieval evaluation.
-* Add stronger input validation.
-* Add automated unit and integration tests.
-* Improve menstrual cycle phase estimation.
-* Improve vector database management.
-* Deploy the platform as a publicly accessible web application.
-
-Future development will continue to prioritize **responsible AI boundaries, transparent system limitations, and modular architecture**.
-
----
-
-## 🎯 Project Purpose
-
-The project explores a **modular AI architecture for women's health support** by combining grounded information retrieval, Machine Learning-based pattern assessment, structured symptom exploration, and deterministic health tracking workflows.
-
-Rather than relying on a single general-purpose AI model, the application uses specialized techniques for different tasks:
-
-* **Retrieval-Augmented Generation (RAG)** for women's health information retrieval and educational responses.
-* **Machine Learning classification** for PCOS-associated pattern assessment.
-* **Structured knowledge matching** for symptom exploration.
-* **Rule-based calculations** for pregnancy and menstrual cycle tracking.
-
-The project focuses on **modular system design, responsible AI boundaries, and the practical integration of multiple AI and software engineering techniques within a domain-focused application**.
-
-The current implementation serves as a working MVP and a foundation for exploring persistent health timelines, connected health context, and more structured women's health support workflows.
+Future development continues to prioritize **responsible AI boundaries, transparent system limitations, and modular architecture**.
 
 ---
 
 ## 👩‍💻 Author
 
 **Umaima Mughal**
-
-Software Engineering Student
-
-Interested in Artificial Intelligence, Machine Learning, Generative AI, and Software Development.
+Software Engineering Student — interested in Artificial Intelligence, Machine Learning, Generative AI, and Software Development.
